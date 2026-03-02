@@ -619,6 +619,30 @@ nav .nav-links a:hover { color: var(--text); }
   font-weight: 300;
 }
 
+/* --- Checkbox / radio group --- */
+.checkbox-group {
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+  margin-top: .35rem;
+}
+
+.checkbox-option {
+  display: flex;
+  align-items: center;
+  gap: .6rem;
+  font-size: 0.9rem;
+  color: var(--text-2);
+  cursor: pointer;
+}
+
+.checkbox-option input[type="checkbox"],
+.checkbox-option input[type="radio"] {
+  width: auto;
+  accent-color: var(--accent);
+  cursor: pointer;
+}
+
 /* --- Email hint --- */
 .email-hint {
   margin-top: .4rem;
