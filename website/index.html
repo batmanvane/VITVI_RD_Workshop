@@ -137,16 +137,7 @@
     <h2>What an Anti-Pitch Looks Like</h2>
     <p>Here are three examples of what we're looking for — honest, specific, technically grounded, and focused on real roadblocks rather than polished results.</p>
 
-    <!-- Carousel controls -->
-    <div class="carousel-nav">
-      <button class="carousel-btn" id="carousel-prev" aria-label="Previous example">&larr;</button>
-      <div class="carousel-dots" id="carousel-dots">
-        <button class="carousel-dot active" data-index="0"></button>
-        <button class="carousel-dot" data-index="1"></button>
-        <button class="carousel-dot" data-index="2"></button>
-      </div>
-      <button class="carousel-btn" id="carousel-next" aria-label="Next example">&rarr;</button>
-    </div>
+    <p class="swipe-hint">&larr; swipe to browse examples &rarr;</p>
 
     <div class="carousel-track" id="carousel-track">
 
@@ -308,31 +299,33 @@
 
     </div><!-- /carousel-track -->
 
+    <div class="carousel-dots" id="carousel-dots">
+      <button class="carousel-dot active" data-index="0"></button>
+      <button class="carousel-dot" data-index="1"></button>
+      <button class="carousel-dot" data-index="2"></button>
+    </div>
+
   </div>
 </section>
 
 <script>
   // Carousel
   (function() {
-    const slides = document.querySelectorAll('.carousel-slide');
+    const track = document.getElementById('carousel-track');
+    const slides = track.querySelectorAll('.carousel-slide');
     const dots = document.querySelectorAll('.carousel-dot');
-    const prevBtn = document.getElementById('carousel-prev');
-    const nextBtn = document.getElementById('carousel-next');
-    let current = 0;
 
-    function goTo(index) {
-      if (index < 0) index = slides.length - 1;
-      if (index >= slides.length) index = 0;
-      current = index;
-      slides.forEach((s, i) => s.classList.toggle('active', i === current));
-      dots.forEach((d, i) => d.classList.toggle('active', i === current));
-    }
+    // Update dots on scroll
+    track.addEventListener('scroll', function() {
+      const index = Math.round(track.scrollLeft / track.offsetWidth);
+      dots.forEach((d, i) => d.classList.toggle('active', i === index));
+    });
 
-    prevBtn.addEventListener('click', () => goTo(current - 1));
-    nextBtn.addEventListener('click', () => goTo(current + 1));
-    dots.forEach(dot => dot.addEventListener('click', () => goTo(+dot.dataset.index)));
-
-    goTo(0);
+    // Click dot to scroll
+    dots.forEach(dot => dot.addEventListener('click', function() {
+      const index = +this.dataset.index;
+      track.scrollTo({ left: index * track.offsetWidth, behavior: 'smooth' });
+    }));
   })();
 </script>
 
