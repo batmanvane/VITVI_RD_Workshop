@@ -314,37 +314,25 @@
 <script>
   // Carousel
   (function() {
-    const track = document.getElementById('carousel-track');
-    const slides = track.querySelectorAll('.carousel-slide');
+    const slides = document.querySelectorAll('.carousel-slide');
     const dots = document.querySelectorAll('.carousel-dot');
     const prevBtn = document.getElementById('carousel-prev');
     const nextBtn = document.getElementById('carousel-next');
     let current = 0;
 
-    function updateHeight() {
-      track.style.height = slides[current].scrollHeight + 'px';
-    }
-
     function goTo(index) {
       if (index < 0) index = slides.length - 1;
       if (index >= slides.length) index = 0;
       current = index;
-      slides.forEach((s, i) => {
-        s.style.transform = 'translateX(' + (-current * 100) + '%)';
-        s.style.opacity = i === current ? '1' : '0';
-        s.style.transition = 'transform .4s ease, opacity .4s ease';
-      });
+      slides.forEach((s, i) => s.classList.toggle('active', i === current));
       dots.forEach((d, i) => d.classList.toggle('active', i === current));
-      updateHeight();
     }
 
     prevBtn.addEventListener('click', () => goTo(current - 1));
     nextBtn.addEventListener('click', () => goTo(current + 1));
     dots.forEach(dot => dot.addEventListener('click', () => goTo(+dot.dataset.index)));
 
-    // Init
     goTo(0);
-    window.addEventListener('resize', updateHeight);
   })();
 </script>
 
