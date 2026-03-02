@@ -46,10 +46,9 @@ The registration form uses [Formspree](https://formspree.io) as the backend. Sub
 
 Others see an inquiry button that opens a pre-filled email to the organizer.
 
-## Authors
+## Author
 
 - **Robert Flassig** — organizer, TH Brandenburg
-- **Claude Code** — co-author
 
 ## License
 
