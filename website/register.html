@@ -33,26 +33,8 @@
     <span class="label">Registration</span>
     <h1>Join the Workshop</h1>
     <p class="form-intro">
-      May 6–7, 2026. This is an invite-only workshop for members of our partner institutions. Fill out the form below — we'll confirm your spot via email.
+      May 6–7, 2026. This is an invite-only workshop for members of our partner institutions. Fill out the form below — we'll confirm your spot via email. Don't forget to book your hotel room if you need one.
     </p>
-
-    <!-- Registration counter -->
-    <div class="reg-counter" id="reg-counter">
-      <div class="counter-item">
-        <span class="counter-number" id="count-phd">0</span>
-        <span class="counter-label">PhD</span>
-      </div>
-      <div class="counter-sep">/</div>
-      <div class="counter-item">
-        <span class="counter-number" id="count-senior">0</span>
-        <span class="counter-label">Senior</span>
-      </div>
-      <div class="counter-sep">/</div>
-      <div class="counter-item">
-        <span class="counter-number" id="count-total">0</span>
-        <span class="counter-label">Total</span>
-      </div>
-    </div>
 
     <!--
       FORM BACKEND SETUP
@@ -76,7 +58,6 @@
           <label class="role-option">
             <input type="radio" name="participant_type" value="phd" required>
             <div class="role-card">
-              <div class="role-icon">&#127891;</div>
               <div class="role-title">PhD Researcher</div>
               <div class="role-desc">Current PhD student presenting a Problem Pitch or attending to support peers.</div>
             </div>
@@ -84,7 +65,6 @@
           <label class="role-option">
             <input type="radio" name="participant_type" value="senior">
             <div class="role-card">
-              <div class="role-icon">&#9881;&#65039;</div>
               <div class="role-title">Senior Participant</div>
               <div class="role-desc">Industry R&D professional, startup founder, or senior academic joining as brain-trust.</div>
             </div>
@@ -231,17 +211,6 @@
 </footer>
 
 <script>
-  // Registration counter
-  function updateCounter() {
-    const regs = JSON.parse(localStorage.getItem('vitvi_registrations') || '[]');
-    const phd = regs.filter(r => r.participant_type === 'phd').length;
-    const senior = regs.filter(r => r.participant_type === 'senior').length;
-    document.getElementById('count-phd').textContent = phd;
-    document.getElementById('count-senior').textContent = senior;
-    document.getElementById('count-total').textContent = regs.length;
-  }
-  updateCounter();
-
   const ALLOWED_DOMAINS = [
     'th-brandenburg.de',
     'rolls-royce.com',
@@ -321,24 +290,6 @@
     }
 
     const action = form.getAttribute('action');
-
-    // If Formspree is not configured, save locally
-    if (action.includes('YOUR_FORM_ID')) {
-      const data = Object.fromEntries(new FormData(form));
-      data.timestamp = new Date().toISOString();
-
-      const registrations = JSON.parse(localStorage.getItem('vitvi_registrations') || '[]');
-      registrations.push(data);
-      localStorage.setItem('vitvi_registrations', JSON.stringify(registrations));
-
-      console.log('Registration saved locally:', data);
-      console.log('All registrations:', registrations);
-
-      wrapper.style.display = 'none';
-      success.classList.add('visible');
-      updateCounter();
-      return;
-    }
 
     // Submit to Formspree
     fetch(action, {
