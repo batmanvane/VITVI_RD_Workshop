@@ -36,7 +36,7 @@
       Technische Hochschule Brandenburg<br>
       Magdeburger Stra&szlig;e 50<br>
       14770 Brandenburg an der Havel<br>
-      E-Mail: <a href="mailto:flassig@th-brandenburg.de">flassig@th-brandenburg.de</a>
+      E-Mail: <span class="obf" data-u="flassig" data-d="th-brandenburg.de"></span>
     </p>
   </div>
 
@@ -119,7 +119,7 @@
       <li><strong>Widerspruch</strong> gegen die Verarbeitung (Art. 21 DSGVO)</li>
     </ul>
     <p>
-      Zur Aus&uuml;bung Ihrer Rechte wenden Sie sich bitte an <a href="mailto:flassig@th-brandenburg.de">flassig@th-brandenburg.de</a>.
+      Zur Aus&uuml;bung Ihrer Rechte wenden Sie sich bitte an <span class="obf" data-u="flassig" data-d="th-brandenburg.de"></span>.
     </p>
     <p>
       Dar&uuml;ber hinaus haben Sie das Recht, sich bei einer <strong>Datenschutz-Aufsichtsbeh&ouml;rde</strong> zu beschweren (Art. 77 DSGVO). Zust&auml;ndig ist die Landesbeauftragte f&uuml;r den Datenschutz und f&uuml;r das Recht auf Akteneinsicht Brandenburg.
@@ -150,5 +150,11 @@
   </div>
 </footer>
 
+<script>
+document.querySelectorAll('.obf').forEach(function(el){
+  var u=el.dataset.u,d=el.dataset.d,e=u+'@'+d;
+  el.innerHTML='<a href="mai'+'lto:'+e+'">'+e+'</a>';
+});
+</script>
 </body>
 </html>

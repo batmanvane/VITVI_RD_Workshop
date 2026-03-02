@@ -42,7 +42,7 @@
   <div class="legal-section">
     <h2>Kontakt</h2>
     <p>
-      E-Mail: <a href="mailto:flassig@th-brandenburg.de">flassig@th-brandenburg.de</a>
+      E-Mail: <span class="obf" data-u="flassig" data-d="th-brandenburg.de"></span>
     </p>
   </div>
 
@@ -93,5 +93,11 @@
   </div>
 </footer>
 
+<script>
+document.querySelectorAll('.obf').forEach(function(el){
+  var u=el.dataset.u,d=el.dataset.d,e=u+'@'+d;
+  el.innerHTML='<a href="mai'+'lto:'+e+'">'+e+'</a>';
+});
+</script>
 </body>
 </html>
