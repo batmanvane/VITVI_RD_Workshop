@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VITVI R&D Workshop 2026</title>
+  <meta name="description" content="Roadblocks, Methods, and Breakthroughs — A two-day intensive workshop for PhD researchers and R&D professionals.">
+  <meta name="author" content="Robert Flassig">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- Nav -->
+<nav>
+  <div class="container">
+    <a href="index.html" class="logo"><span>&gt;</span> vitvi_workshop</a>
+    <button class="menu-toggle" aria-label="Menu" onclick="document.querySelector('.nav-links').classList.toggle('open')">&#9776;</button>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#format">Format</a></li>
+      <li><a href="#example">Example</a></li>
+      <li><a href="#schedule">Schedule</a></li>
+      <li><a href="register.html" class="btn btn-primary" style="padding:.45rem 1rem;font-size:.8rem;">Register</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- Hero -->
+<header class="hero">
+  <div class="container">
+    <span class="label">VITVI R&D Workshop 2026</span>
+    <h1>Roadblocks, Methods, and&nbsp;Breakthroughs</h1>
+    <p class="subtitle">
+      Two days of radical candor. Share your broken code, failed experiments, and messy data — and let the room help you break&nbsp;through.
+    </p>
+    <div class="hero-meta">
+      <div class="meta-item">
+        <code>date</code>
+        <span>May 6–7, 2026</span>
+      </div>
+      <div class="meta-item">
+        <code>location</code>
+        <span>Offsite Venue, Germany</span>
+      </div>
+      <div class="meta-item">
+        <code>attendees</code>
+        <span>~12 PhDs + Industry Experts</span>
+      </div>
+    </div>
+    <div class="btn-group">
+      <a href="register.html" class="btn btn-primary">Register Now</a>
+      <a href="#format" class="btn btn-secondary">Learn the Format</a>
+    </div>
+  </div>
+</header>
+
+<!-- About -->
+<section id="about">
+  <div class="container">
+    <span class="label">About</span>
+    <h2>Not your typical academic symposium</h2>
+    <p>
+      We are stepping away from polished, high-level presentations to create a space for <strong>deep technical discussions</strong>, networking, and practical problem-solving. This is a safe space to share what's actually hard about your research.
+    </p>
+    <div class="card-grid">
+      <div class="card">
+        <h3>Problem Pitches</h3>
+        <p>PhD students present their <em>actual</em> roadblocks — not their results. The audience becomes your brain-trust.</p>
+      </div>
+      <div class="card">
+        <h3>Impulse Talks</h3>
+        <p>Short provocations from academia, industry, and startups to keep the energy high and the perspectives diverse.</p>
+      </div>
+      <div class="card">
+        <h3>Open Troubleshooting</h3>
+        <p>Unstructured time for 1-on-1 whiteboarding, spontaneous collaborations, and deep-dive conversations.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Format -->
+<section id="format">
+  <div class="container">
+    <span class="label">The Format</span>
+    <h2>The Anti-Pitch: 4 Slides, 10 Minutes</h2>
+    <p>
+      Each PhD student gets <strong>30 minutes total</strong>: a 10-minute structured presentation followed by 20 minutes of dedicated group troubleshooting. Here's the strict 4-slide format:
+    </p>
+    <ol class="slide-list">
+      <li>
+        <strong>The Context <span class="mono">(2 min)</span></strong>
+        <p>What is the overarching goal of your project? Keep it brief — just enough context for the room to understand your problem.</p>
+      </li>
+      <li>
+        <strong>The Core Roadblock <span class="mono">(3 min)</span></strong>
+        <p>Zoom in on one or two specific technical problems you're facing right now. Buggy model? Dirty data? Methodological flaw? Hardware limitation?</p>
+      </li>
+      <li>
+        <strong>What I've Tried <span class="mono">(3 min)</span></strong>
+        <p>What solutions have you attempted so far? Why did they fail or fall short?</p>
+      </li>
+      <li>
+        <strong>The Ask <span class="mono">(2 min)</span></strong>
+        <p>Specific questions for the room. "Has anyone used X to solve Y?" or "How do you handle this type of noise in industry?"</p>
+      </li>
+    </ol>
+    <p style="margin-top:1.5rem;font-style:italic;color:var(--text-3);">
+      The goal is not to prove you know everything — the goal is to leverage the brains in the room to help you break through your roadblock.
+    </p>
+  </div>
+</section>
+
+<!-- Example Anti-Pitch -->
+<section id="example">
+  <div class="container">
+    <span class="label">Example</span>
+    <h2>"Can I Trust My Own Simulation Data?"</h2>
+    <p>Here's what a real Anti-Pitch looks like — honest, specific, and technically grounded. Based on published work by Katja Muller, Brandenburg University of Applied Sciences.</p>
+
+    <div class="example-slide">
+      <div class="slide-label">Slide 1 — The Context</div>
+      <blockquote>
+        I'm investigating how fan blade geometry influences in-flight ice accretion on the NASA R67 low-pressure compressor rotor. The goal is to run a sensitivity study across 50 blade designs (DoE) to identify which geometric parameters drive ice buildup — and feed those insights into a multidisciplinary design optimization.
+        <br><br>
+        The simulation chain is fully automated: ParaBlade generates geometry, ANSYS CFX computes the flow field, and FENSAP-ICE handles droplet trajectories and ice growth.
+      </blockquote>
+    </div>
+
+    <div class="example-slide">
+      <div class="slide-label">Slide 2 — The Core Roadblock</div>
+      <blockquote>
+        <strong>My problem is trust in my own data.</strong>
+        <br><br>
+        To run 50 designs in a reasonable timeframe, I need a manageable grid resolution. But my grid independence study revealed alarming discrepancies:
+      </blockquote>
+      <table>
+        <thead>
+          <tr><th></th><th>Fine grid</th><th>Coarse grid</th><th>Medium grid</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Ice mass</td><td>1.64 g (ref)</td><td>3.56 g <span class="highlight">(+117%)</span></td><td>1.71 g (+4%)</td></tr>
+          <tr><td>Comp. time</td><td>~6 h</td><td>~10 min</td><td>~4 h</td></tr>
+        </tbody>
+      </table>
+      <blockquote>
+        The medium grid is acceptable (~4% deviation) but takes 4 hours per design — that's <strong>200 hours</strong> for my 50-design DoE, and that's just the icing step. How wrong can my rankings be before the whole sensitivity study becomes meaningless?
+      </blockquote>
+    </div>
+
+    <div class="example-slide">
+      <div class="slide-label">Slide 3 — What I've Tried</div>
+      <blockquote>
+        <ul style="padding-left:1.25rem;margin:.5rem 0;">
+          <li>Used the medium grid (1&times;10<sup>6</sup> nodes) as a compromise — but I don't know if the ~4% error is systematic or design-dependent.</li>
+          <li>Compared against published experimental data (Strazisar et al.) — matches at design point but diverges near stall.</li>
+          <li>Checked statistical indicators (Spearman correlations, CoI) — plausible but with 50 samples and non-linear interactions, I can't be sure the rankings are stable.</li>
+          <li>Considered running a subset on the fine grid for spot-checking — but there's no established method for deciding which designs to validate or how many are enough.</li>
+        </ul>
+      </blockquote>
+    </div>
+
+    <div class="example-slide">
+      <div class="slide-label">Slide 4 — The Ask</div>
+      <ol>
+        <li>How do you handle simulation fidelity vs. budget trade-offs in your DoE work? Is there a principled way to quantify the "ranking error" introduced by a coarser grid?</li>
+        <li>Has anyone used adaptive sampling or surrogate models (Gaussian processes, etc.) to reduce the number of full-fidelity runs needed?</li>
+        <li><strong>Industry perspective:</strong> When you run large parameter studies, what's your threshold for "good enough" data quality?</li>
+        <li>Does anyone have experience with multi-fidelity approaches — using coarse-grid results as a cheap predictor and fine-grid runs only where it matters?</li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<!-- Schedule -->
+<section id="schedule">
+  <div class="container">
+    <span class="label">Schedule</span>
+    <h2>Two Days of Deep Work</h2>
+
+    <div class="schedule-day">
+      <h3>Day 1 — Laying the Groundwork</h3>
+
+      <div class="schedule-item">
+        <div class="schedule-time">10:00</div>
+        <div class="schedule-content">
+          <strong>Welcome &amp; Intro</strong>
+          <p>Coffee, settling in, and setting the "Radical Candor" ground rules.</p>
+        </div>
+      </div>
+      <div class="schedule-item">
+        <div class="schedule-time">10:30</div>
+        <div class="schedule-content">
+          <strong>Impulse Talk 1: Academia</strong>
+          <p>The academic view on VITVI to set the stage.</p>
+        </div>
+      </div>
+      <div class="schedule-item">
+        <div class="schedule-time">11:00 – 12:30</div>
+        <div class="schedule-content">
+          <strong>Problem Clinics — Block 1</strong>
+          <p>3 PhD students: 10 min pitch + 20 min group troubleshooting each.</p>
+        </div>
+      </div>
+      <div class="schedule-item">
+        <div class="schedule-time">12:30 – 14:00</div>
+        <div class="schedule-content">
+          <strong>Lunch &amp; Hotel Check-in</strong>
+          <p>Networking lunch and dropping off bags.</p>
+        </div>
+      </div>
+      <div class="schedule-item">
+        <div class="schedule-time">14:00</div>
+        <div class="schedule-content">
+          <strong>Impulse Talk 2: Startup</strong>
+          <p>The agile/startup perspective on VITVI.</p>
+        </div>
+      </div>
+      <div class="schedule-item">
+        <div class="schedule-time">14:30 – 16:00</div>
+        <div class="schedule-content">
+          <strong>Problem Clinics — Block 2</strong>
+          <p>3 PhD students: 10 min pitch + 20 min group troubleshooting each.</p>
+        </div>
+      </div>
+      <div class="schedule-item">
+        <div class="schedule-time">16:00 – 16:30</div>
+        <div class="schedule-content">
+          <strong>Coffee Break</strong>
+          <p>Spill-over technical discussions.</p>
+        </div>
+      </div>
+      <div class="schedule-item">
+        <div class="schedule-time">16:30 – 17:30</div>
+        <div class="schedule-content">
+          <strong>Open Troubleshooting</strong>
+          <p>Unstructured time for 1-on-1s, whiteboarding, or catching up.</p>
+        </div>
+      </div>
+      <div class="schedule-item">
+        <div class="schedule-time">18:30+</div>
+        <div class="schedule-content">
+          <strong>Workshop Dinner</strong>
+          <p>Casual networking. No formal agenda.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="schedule-day">
+      <h3>Day 2 — Deep Dives &amp; Synthesis</h3>
+
+      <div class="schedule-item">
+        <div class="schedule-time">09:00</div>
+        <div class="schedule-content">
+          <strong>Impulse Talk 3: Industry</strong>
+          <p>Kicking off Day 2 with the industry perspective.</p>
+        </div>
+      </div>
+      <div class="schedule-item">
+        <div class="schedule-time">09:30 – 11:00</div>
+        <div class="schedule-content">
+          <strong>Problem Clinics — Block 3</strong>
+          <p>3 PhD students: 10 min pitch + 20 min group troubleshooting each.</p>
+        </div>
+      </div>
+      <div class="schedule-item">
+        <div class="schedule-time">11:00 – 11:30</div>
+        <div class="schedule-content">
+          <strong>Coffee Break</strong>
+          <p>Room checkout for those who need it.</p>
+        </div>
+      </div>
+      <div class="schedule-item">
+        <div class="schedule-time">11:30</div>
+        <div class="schedule-content">
+          <strong>Impulse Talk 4: Deep Dive</strong>
+          <p>A focused talk on a specific methodology or emerging tool.</p>
+        </div>
+      </div>
+      <div class="schedule-item">
+        <div class="schedule-time">12:00 – 13:30</div>
+        <div class="schedule-content">
+          <strong>Problem Clinics — Block 4</strong>
+          <p>3 PhD students: final batch of presentations.</p>
+        </div>
+      </div>
+      <div class="schedule-item">
+        <div class="schedule-time">13:30 – 14:30</div>
+        <div class="schedule-content">
+          <strong>Lunch</strong>
+        </div>
+      </div>
+      <div class="schedule-item">
+        <div class="schedule-time">14:30 – 15:30</div>
+        <div class="schedule-content">
+          <strong>The Synthesis Session</strong>
+          <p>Group discussion: recurring roadblocks, new methods, and collaboration opportunities.</p>
+        </div>
+      </div>
+      <div class="schedule-item">
+        <div class="schedule-time">15:30 – 16:00</div>
+        <div class="schedule-content">
+          <strong>Wrap-up &amp; Departure</strong>
+          <p>Safe travels home!</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section style="text-align:center;padding:5rem 0;">
+  <div class="container">
+    <h2>Ready to share your roadblock?</h2>
+    <p style="max-width:440px;margin:0 auto 2rem;">Spots are limited. Register now and let us know whether you're joining as a PhD researcher or a senior participant.</p>
+    <a href="register.html" class="btn btn-primary">Register for the Workshop</a>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="container">
+    <p>
+      VITVI R&D Workshop 2026 &middot;
+      Built by <strong>Robert Flassig</strong> &amp; <strong>Claude Code</strong> &middot;
+      <a href="impressum.html">Impressum</a> &middot;
+      <a href="datenschutz.html">Datenschutz</a> &middot;
+      <a href="../LICENSE">MIT License</a>
+    </p>
+  </div>
+</footer>
+
+</body>
+</html>

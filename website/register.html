@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Register — VITVI R&D Workshop 2026</title>
+  <meta name="description" content="Register for the VITVI R&D Workshop 2026.">
+  <meta name="author" content="Robert Flassig">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- Nav -->
+<nav>
+  <div class="container">
+    <a href="index.html" class="logo"><span>&gt;</span> vitvi_workshop</a>
+    <button class="menu-toggle" aria-label="Menu" onclick="document.querySelector('.nav-links').classList.toggle('open')">&#9776;</button>
+    <ul class="nav-links">
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="index.html#format">Format</a></li>
+      <li><a href="index.html#schedule">Schedule</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main class="container form-page">
+
+  <!-- Form -->
+  <div id="registration-form-wrapper">
+    <span class="label">Registration</span>
+    <h1>Join the Workshop</h1>
+    <p class="form-intro">
+      May 6–7, 2026. Fill out the form below — we'll confirm your spot via email.
+    </p>
+
+    <!-- Registration counter -->
+    <div class="reg-counter" id="reg-counter">
+      <div class="counter-item">
+        <span class="counter-number" id="count-phd">0</span>
+        <span class="counter-label">PhD</span>
+      </div>
+      <div class="counter-sep">/</div>
+      <div class="counter-item">
+        <span class="counter-number" id="count-senior">0</span>
+        <span class="counter-label">Senior</span>
+      </div>
+      <div class="counter-sep">/</div>
+      <div class="counter-item">
+        <span class="counter-number" id="count-total">0</span>
+        <span class="counter-label">Total</span>
+      </div>
+    </div>
+
+    <!--
+      FORM BACKEND SETUP
+      ===================
+      This form uses Formspree (https://formspree.io) for collecting submissions.
+
+      To activate:
+      1. Create a free account at https://formspree.io
+      2. Create a new form and copy your form ID (e.g. "xpzvqkdl")
+      3. Replace YOUR_FORM_ID below with your actual ID
+
+      Free tier: 50 submissions/month — more than enough for this workshop.
+      All submissions will appear in your Formspree dashboard, with email notifications.
+    -->
+    <form id="reg-form" action="https://formspree.io/f/mlgwynab" method="POST">
+
+      <!-- Participant type -->
+      <div class="form-section">
+        <div class="form-section-title">I'm joining as</div>
+        <div class="role-picker">
+          <label class="role-option">
+            <input type="radio" name="participant_type" value="phd" required>
+            <div class="role-card">
+              <div class="role-icon">&#127891;</div>
+              <div class="role-title">PhD Researcher</div>
+              <div class="role-desc">Current PhD student presenting a Problem Pitch or attending to support peers.</div>
+            </div>
+          </label>
+          <label class="role-option">
+            <input type="radio" name="participant_type" value="senior">
+            <div class="role-card">
+              <div class="role-icon">&#9881;&#65039;</div>
+              <div class="role-title">Senior Participant</div>
+              <div class="role-desc">Industry R&D professional, startup founder, or senior academic joining as brain-trust.</div>
+            </div>
+          </label>
+        </div>
+      </div>
+
+      <!-- Personal info -->
+      <div class="form-section">
+        <div class="form-section-title">Your details</div>
+
+        <div class="field">
+          <label for="name">Full Name</label>
+          <input type="text" id="name" name="name" placeholder="e.g. Katja Muller" required>
+        </div>
+
+        <div class="field">
+          <label for="email">Email <span class="optional">(institutional)</span></label>
+          <input type="email" id="email" name="email" placeholder="katja.muller@th-brandenburg.de" required>
+          <div id="email-hint" class="email-hint" style="display:none;"></div>
+        </div>
+
+        <div class="field">
+          <label for="affiliation">Affiliation</label>
+          <input type="text" id="affiliation" name="affiliation" placeholder="e.g. Brandenburg University of Applied Sciences" required>
+        </div>
+
+        <div class="field">
+          <label for="role">Role / Position</label>
+          <input type="text" id="role" name="role" placeholder="e.g. PhD Student, R&D Engineer, CTO">
+        </div>
+      </div>
+
+      <!-- Research / Expertise -->
+      <div class="form-section">
+        <div class="form-section-title">Context</div>
+
+        <div class="field">
+          <label for="topic">Research Area / Expertise <span class="optional">(optional)</span></label>
+          <input type="text" id="topic" name="topic" placeholder="e.g. Computational ice accretion, turbomachinery design">
+        </div>
+
+        <div class="field" id="presenting-field">
+          <label for="presenting">Will you present a Problem Pitch?</label>
+          <select id="presenting" name="presenting">
+            <option value="" disabled selected>Select one</option>
+            <option value="yes">Yes — I have a roadblock to share</option>
+            <option value="maybe">Maybe — still deciding</option>
+            <option value="no">No — I'm joining as audience / brain-trust</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="topics_interest">Topics you'd like the group to cover <span class="optional">(optional)</span></label>
+          <textarea id="topics_interest" name="topics_interest" placeholder="e.g. Multi-fidelity methods, surrogate modelling, data quality in CFD..."></textarea>
+        </div>
+      </div>
+
+      <!-- Logistics -->
+      <div class="form-section">
+        <div class="form-section-title">Logistics</div>
+
+        <div class="field">
+          <label for="dietary">Dietary Requirements <span class="optional">(optional)</span></label>
+          <input type="text" id="dietary" name="dietary" placeholder="e.g. Vegetarian, no shellfish">
+        </div>
+
+        <div class="field">
+          <label for="hotel">Hotel room needed?</label>
+          <select id="hotel" name="hotel">
+            <option value="" disabled selected>Select one</option>
+            <option value="yes">Yes — I need a room for 1 night</option>
+            <option value="no">No — I'll arrange my own accommodation</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Hidden fields -->
+      <input type="hidden" name="_subject" value="New Workshop Registration">
+      <input type="text" name="_gotcha" style="display:none">
+
+      <!-- Submit -->
+      <div class="form-footer">
+        <p class="note">We'll send a confirmation to your email.</p>
+        <button type="submit" id="submit-btn" class="btn btn-primary">Submit Registration</button>
+      </div>
+    </form>
+  </div>
+
+  <!-- Not whitelisted -->
+  <div id="inquiry-panel" class="inquiry-panel" style="display:none;">
+    <div class="inquiry-card">
+      <h2>Not from a partner organization?</h2>
+      <p>
+        Registration is currently limited to members of our partner institutions.
+        If you'd like to attend, send us an inquiry and we'll get back to you.
+      </p>
+      <div class="inquiry-domains">
+        <span class="label">Accepted domains</span>
+        <div class="domain-list">
+          <code>@th-brandenburg.de</code>
+          <code>@rolls-royce.com</code>
+          <code>@friendship-systems.com</code>
+          <code>@tu-berlin.de</code>
+          <code>@b-tu.de</code>
+        </div>
+      </div>
+      <div class="btn-group" style="justify-content:flex-start;margin-top:1.5rem;">
+        <a id="inquiry-mailto" href="mailto:flassig@th-brandenburg.de?subject=VITVI%20Workshop%202026%20%E2%80%93%20Teilnahmeanfrage&body=Name%3A%20%0AOrganisation%3A%20%0ARolle%3A%20%0AWarum%20m%C3%B6chte%20ich%20teilnehmen%3A%20" class="btn btn-primary">Send Inquiry Email</a>
+        <button onclick="document.getElementById('inquiry-panel').style.display='none';document.getElementById('registration-form-wrapper').style.display='block';" class="btn btn-secondary">Back to Form</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Success -->
+  <div id="form-success" class="form-success">
+    <div class="check">&#10003;</div>
+    <h2>You're registered!</h2>
+    <p>We've received your registration and will be in touch soon with details.</p>
+    <a href="index.html" class="btn btn-secondary" style="margin-top:1.5rem;">Back to Workshop Info</a>
+  </div>
+
+</main>
+
+<footer>
+  <div class="container">
+    <p>
+      VITVI R&D Workshop 2026 &middot;
+      Built by <strong>Robert Flassig</strong> &amp; <strong>Claude Code</strong> &middot;
+      <a href="impressum.html">Impressum</a> &middot;
+      <a href="datenschutz.html">Datenschutz</a> &middot;
+      <a href="../LICENSE">MIT License</a>
+    </p>
+  </div>
+</footer>
+
+<script>
+  // Registration counter
+  function updateCounter() {
+    const regs = JSON.parse(localStorage.getItem('vitvi_registrations') || '[]');
+    const phd = regs.filter(r => r.participant_type === 'phd').length;
+    const senior = regs.filter(r => r.participant_type === 'senior').length;
+    document.getElementById('count-phd').textContent = phd;
+    document.getElementById('count-senior').textContent = senior;
+    document.getElementById('count-total').textContent = regs.length;
+  }
+  updateCounter();
+
+  const ALLOWED_DOMAINS = [
+    'th-brandenburg.de',
+    'rolls-royce.com',
+    'friendship-systems.com',
+    'tu-berlin.de',
+    'b-tu.de'
+  ];
+
+  const form = document.getElementById('reg-form');
+  const wrapper = document.getElementById('registration-form-wrapper');
+  const success = document.getElementById('form-success');
+  const inquiry = document.getElementById('inquiry-panel');
+  const emailInput = document.getElementById('email');
+  const emailHint = document.getElementById('email-hint');
+  const submitBtn = document.getElementById('submit-btn');
+
+  function getDomain(email) {
+    const parts = email.split('@');
+    return parts.length === 2 ? parts[1].toLowerCase().trim() : '';
+  }
+
+  function isWhitelisted(email) {
+    const domain = getDomain(email);
+    return ALLOWED_DOMAINS.some(d => domain === d || domain.endsWith('.' + d));
+  }
+
+  // Live email validation feedback
+  emailInput.addEventListener('input', function() {
+    const val = emailInput.value.trim();
+    if (!val || !val.includes('@')) {
+      emailHint.style.display = 'none';
+      submitBtn.disabled = false;
+      return;
+    }
+    if (isWhitelisted(val)) {
+      emailHint.style.display = 'block';
+      emailHint.className = 'email-hint email-hint--ok';
+      emailHint.textContent = 'Accepted domain';
+      submitBtn.disabled = false;
+    } else {
+      emailHint.style.display = 'block';
+      emailHint.className = 'email-hint email-hint--blocked';
+      emailHint.innerHTML = 'Domain not on the whitelist. <button type="button" class="hint-link" onclick="showInquiry()">Send an inquiry instead?</button>';
+      submitBtn.disabled = true;
+    }
+  });
+
+  function showInquiry() {
+    const name = document.getElementById('name').value;
+    const email = emailInput.value;
+    const affiliation = document.getElementById('affiliation').value;
+    const role = document.getElementById('role').value;
+
+    const subject = encodeURIComponent('VITVI Workshop 2026 \u2013 Attendance Inquiry');
+    const body = encodeURIComponent(
+      'Name: ' + name +
+      '\nEmail: ' + email +
+      '\nOrganisation: ' + affiliation +
+      '\nRole: ' + role +
+      '\n\nI would like to attend the VITVI R&D Workshop 2026. Here is why:\n\n'
+    );
+    document.getElementById('inquiry-mailto').href =
+      'mailto:flassig@th-brandenburg.de?subject=' + subject + '&body=' + body;
+
+    wrapper.style.display = 'none';
+    inquiry.style.display = 'block';
+  }
+
+  // Form submission
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    // Final whitelist check
+    if (!isWhitelisted(emailInput.value)) {
+      showInquiry();
+      return;
+    }
+
+    const action = form.getAttribute('action');
+
+    // If Formspree is not configured, save locally
+    if (action.includes('YOUR_FORM_ID')) {
+      const data = Object.fromEntries(new FormData(form));
+      data.timestamp = new Date().toISOString();
+
+      const registrations = JSON.parse(localStorage.getItem('vitvi_registrations') || '[]');
+      registrations.push(data);
+      localStorage.setItem('vitvi_registrations', JSON.stringify(registrations));
+
+      console.log('Registration saved locally:', data);
+      console.log('All registrations:', registrations);
+
+      wrapper.style.display = 'none';
+      success.classList.add('visible');
+      updateCounter();
+      return;
+    }
+
+    // Submit to Formspree
+    fetch(action, {
+      method: 'POST',
+      body: new FormData(form),
+      headers: { 'Accept': 'application/json' }
+    }).then(response => {
+      if (response.ok) {
+        wrapper.style.display = 'none';
+        success.classList.add('visible');
+      } else {
+        alert('Something went wrong. Please try again or email us directly.');
+      }
+    }).catch(() => {
+      alert('Network error. Please check your connection and try again.');
+    });
+  });
+</script>
+
+</body>
+</html>
