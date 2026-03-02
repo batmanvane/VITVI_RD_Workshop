@@ -86,92 +86,212 @@
 <section id="format">
   <div class="container">
     <span class="label">The Format</span>
-    <h2>The Anti-Pitch: 4 Slides, 10 Minutes</h2>
-    <p>
-      Each PhD student gets <strong>30 minutes total</strong>: a 10-minute structured presentation followed by 20 minutes of dedicated group troubleshooting. Here's the strict 4-slide format:
-    </p>
-    <ol class="slide-list">
-      <li>
-        <strong>The Context <span class="mono">(2 min)</span></strong>
-        <p>What is the overarching goal of your project? Keep it brief — just enough context for the room to understand your problem.</p>
-      </li>
-      <li>
-        <strong>The Core Roadblock <span class="mono">(3 min)</span></strong>
-        <p>Zoom in on one or two specific technical problems you're facing right now. Buggy model? Dirty data? Methodological flaw? Hardware limitation?</p>
-      </li>
-      <li>
-        <strong>What I've Tried <span class="mono">(3 min)</span></strong>
-        <p>What solutions have you attempted so far? Why did they fail or fall short?</p>
-      </li>
-      <li>
-        <strong>The Ask <span class="mono">(2 min)</span></strong>
-        <p>Specific questions for the room. "Has anyone used X to solve Y?" or "How do you handle this type of noise in industry?"</p>
-      </li>
-    </ol>
+    <h2>The Anti-Pitch: 30 Minutes Per Student</h2>
+
+    <div class="format-timeline">
+      <div class="timeline-block timeline-present">
+        <div class="timeline-header">
+          <span class="timeline-duration">10 min</span>
+          <span class="timeline-title">Your Presentation</span>
+        </div>
+        <p>Strict 4-slide format — pitch your roadblock, not your results.</p>
+        <ol class="slide-list">
+          <li>
+            <strong>The Context <span class="mono">(2 min)</span></strong>
+            <p>What is the overarching goal of your project? Keep it brief — just enough context for the room to understand your problem.</p>
+          </li>
+          <li>
+            <strong>The Core Roadblock <span class="mono">(3 min)</span></strong>
+            <p>Zoom in on one or two specific technical problems you're facing right now. Buggy model? Dirty data? Methodological flaw? Hardware limitation?</p>
+          </li>
+          <li>
+            <strong>What I've Tried <span class="mono">(3 min)</span></strong>
+            <p>What solutions have you attempted so far? Why did they fail or fall short?</p>
+          </li>
+          <li>
+            <strong>The Ask <span class="mono">(2 min)</span></strong>
+            <p>Specific questions for the room. "Has anyone used X to solve Y?" or "How do you handle this type of noise in industry?"</p>
+          </li>
+        </ol>
+      </div>
+      <div class="timeline-block timeline-troubleshoot">
+        <div class="timeline-header">
+          <span class="timeline-duration">20 min</span>
+          <span class="timeline-title">Group Troubleshooting</span>
+        </div>
+        <p>The audience becomes your brain-trust. Open floor for questions, suggestions, war stories, and live debugging. PhDs, industry experts, and startup founders all pitch in.</p>
+      </div>
+    </div>
+
     <p style="margin-top:1.5rem;font-style:italic;color:var(--text-3);">
       The goal is not to prove you know everything — the goal is to leverage the brains in the room to help you break through your roadblock.
     </p>
   </div>
 </section>
 
-<!-- Example Anti-Pitch -->
+<!-- Example Anti-Pitches -->
 <section id="example">
   <div class="container">
-    <span class="label">Example</span>
-    <h2>"Can I Trust My Own Simulation Data?"</h2>
-    <p>Here's what a real Anti-Pitch looks like — honest, specific, and technically grounded. Based on <a href="https://asmedigitalcollection.asme.org/turbomachinery/article-abstract/148/6/061001/1222637/Numerical-Study-of-Ice-Accretion-on-Fan-Blades" target="_blank" rel="noopener">published work</a> by Katja M&uuml;ller, Brandenburg University of Applied Sciences.</p>
+    <span class="label">Examples</span>
+    <h2>What an Anti-Pitch Looks Like</h2>
+    <p>Here are three examples of what we're looking for — honest, specific, technically grounded, and focused on real roadblocks rather than polished results.</p>
 
-    <div class="example-slide">
-      <div class="slide-label">Slide 1 — The Context</div>
-      <blockquote>
-        I'm investigating how fan blade geometry influences in-flight ice accretion on the NASA R67 low-pressure compressor rotor. The goal is to run a sensitivity study across 50 blade designs (DoE) to identify which geometric parameters drive ice buildup — and feed those insights into a multidisciplinary design optimization.
-        <br><br>
-        The simulation chain is fully automated: ParaBlade generates geometry, ANSYS CFX computes the flow field, and FENSAP-ICE handles droplet trajectories and ice growth.
-      </blockquote>
+    <!-- Example 1: Katja Müller -->
+    <div class="example-block">
+      <h3 class="example-title">"Can I Trust My Own Simulation Data?"</h3>
+      <p class="example-meta">Katja M&uuml;ller, TH Brandenburg &middot; <a href="https://asmedigitalcollection.asme.org/turbomachinery/article-abstract/148/6/061001/1222637/Numerical-Study-of-Ice-Accretion-on-Fan-Blades" target="_blank" rel="noopener">ASME J. Turbomachinery, 2025</a></p>
+
+      <div class="example-slide">
+        <div class="slide-label">Slide 1 — The Context</div>
+        <blockquote>
+          I'm investigating how fan blade geometry influences in-flight ice accretion on the NASA R67 low-pressure compressor rotor. The goal is to run a sensitivity study across 50 blade designs (DoE) to identify which geometric parameters drive ice buildup — and feed those insights into a multidisciplinary design optimization.
+          <br><br>
+          The simulation chain is fully automated: ParaBlade generates geometry, ANSYS CFX computes the flow field, and FENSAP-ICE handles droplet trajectories and ice growth.
+        </blockquote>
+      </div>
+      <div class="example-slide">
+        <div class="slide-label">Slide 2 — The Core Roadblock</div>
+        <blockquote>
+          <strong>My problem is trust in my own data.</strong>
+          <br><br>
+          To run 50 designs in a reasonable timeframe, I need a manageable grid resolution. But my grid independence study revealed alarming discrepancies:
+        </blockquote>
+        <table>
+          <thead>
+            <tr><th></th><th>Fine grid</th><th>Coarse grid</th><th>Medium grid</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Ice mass</td><td>1.64 g (ref)</td><td>3.56 g <span class="highlight">(+117%)</span></td><td>1.71 g (+4%)</td></tr>
+            <tr><td>Comp. time</td><td>~6 h</td><td>~10 min</td><td>~4 h</td></tr>
+          </tbody>
+        </table>
+        <blockquote>
+          The medium grid takes 4 hours per design — that's <strong>200 hours</strong> for my 50-design DoE, just for the icing step. How wrong can my rankings be before the whole sensitivity study becomes meaningless?
+        </blockquote>
+      </div>
+      <div class="example-slide">
+        <div class="slide-label">Slide 3 — What I've Tried</div>
+        <blockquote>
+          <ul style="padding-left:1.25rem;margin:.5rem 0;">
+            <li>Used the medium grid (1&times;10<sup>6</sup> nodes) as a compromise — but I don't know if the ~4% error is systematic or design-dependent.</li>
+            <li>Compared against published experimental data (Strazisar et al.) — matches at design point but diverges near stall.</li>
+            <li>Checked statistical indicators (Spearman correlations, CoI) — plausible but with only 50 samples, I can't be sure the rankings are stable.</li>
+            <li>Considered running a subset on the fine grid for spot-checking — but no established method for deciding which designs to validate.</li>
+          </ul>
+        </blockquote>
+      </div>
+      <div class="example-slide">
+        <div class="slide-label">Slide 4 — The Ask</div>
+        <ol>
+          <li>How do you handle simulation fidelity vs. budget trade-offs in DoE work? Is there a principled way to quantify "ranking error" from a coarser grid?</li>
+          <li>Has anyone used adaptive sampling or surrogate models (GPs, etc.) to reduce the number of full-fidelity runs needed?</li>
+          <li><strong>Industry perspective:</strong> What's your threshold for "good enough" data quality in large parameter studies?</li>
+          <li>Does anyone have experience with multi-fidelity approaches — coarse-grid as cheap predictor, fine-grid only where it matters?</li>
+        </ol>
+      </div>
     </div>
 
-    <div class="example-slide">
-      <div class="slide-label">Slide 2 — The Core Roadblock</div>
-      <blockquote>
-        <strong>My problem is trust in my own data.</strong>
-        <br><br>
-        To run 50 designs in a reasonable timeframe, I need a manageable grid resolution. But my grid independence study revealed alarming discrepancies:
-      </blockquote>
-      <table>
-        <thead>
-          <tr><th></th><th>Fine grid</th><th>Coarse grid</th><th>Medium grid</th></tr>
-        </thead>
-        <tbody>
-          <tr><td>Ice mass</td><td>1.64 g (ref)</td><td>3.56 g <span class="highlight">(+117%)</span></td><td>1.71 g (+4%)</td></tr>
-          <tr><td>Comp. time</td><td>~6 h</td><td>~10 min</td><td>~4 h</td></tr>
-        </tbody>
-      </table>
-      <blockquote>
-        The medium grid is acceptable (~4% deviation) but takes 4 hours per design — that's <strong>200 hours</strong> for my 50-design DoE, and that's just the icing step. How wrong can my rankings be before the whole sensitivity study becomes meaningless?
-      </blockquote>
+    <!-- Example 2: Klaus Markgraf -->
+    <div class="example-block">
+      <h3 class="example-title">"My AI Explains — but Can I Believe It?"</h3>
+      <p class="example-meta">Klaus Markgraf, TH Brandenburg &middot; <a href="https://www.researchsquare.com/article/rs-8590595/v1" target="_blank" rel="noopener">Markgraf et al., 2026 (preprint)</a></p>
+
+      <div class="example-slide">
+        <div class="slide-label">Slide 1 — The Context</div>
+        <blockquote>
+          We use data-driven surrogate models to replace expensive CFD simulations in aero-engine development — predicting performance across hundreds of blade designs without running every simulation. To understand <em>why</em> the model makes certain predictions, we use SHAP (Shapley Additive Explanations) to rank which geometric features matter most.
+          <br><br>
+          The vision: use XAI to not just predict, but to guide the engineer's intuition — tell us which parameters to focus on, and which to ignore in the next design iteration.
+        </blockquote>
+      </div>
+      <div class="example-slide">
+        <div class="slide-label">Slide 2 — The Core Roadblock</div>
+        <blockquote>
+          <strong>SHAP values are unstable when data is scarce — and in engine development, data is always scarce.</strong>
+          <br><br>
+          Running the same SHAP analysis with different random seeds on the same 25-sample dataset gives wildly different feature rankings. Feature x<sub>5</sub> jumps from "most important" to "irrelevant" depending on the run. The bold line below is the ground truth — none of the individual runs match it:
+        </blockquote>
+        <blockquote>
+          With small datasets (25–50 samples, typical for our CFD campaigns), a single SHAP iteration is essentially a <strong>point estimate with unknown variance</strong>. But downstream processes — DoE construction, design space reduction — treat these rankings as gospel. If the feature ranking is wrong, the entire surrogate model training pipeline is corrupted.
+        </blockquote>
+      </div>
+      <div class="example-slide">
+        <div class="slide-label">Slide 3 — What I've Tried</div>
+        <blockquote>
+          <ul style="padding-left:1.25rem;margin:.5rem 0;">
+            <li><strong>Bootstrap + SHAP:</strong> Train B=50 surrogate models on bootstrap resamples, compute SHAP for each, aggregate into box plots. This gives us variance estimates and reveals which features are reliably important vs. noise.</li>
+            <li><strong>BIFI (Bootstrap-Informed Feature Importance):</strong> A new method that automatically identifies the threshold between "important" and "negligible" features using the cumulative SHAP distribution's maximum gradient — no manual cutoff needed.</li>
+            <li><strong>Result:</strong> BIFI-based DoEs improve surrogate model quality (R&sup2; and MSE) by up to 90% compared to naive SHAP-based feature selection. But...</li>
+            <li><strong>Open problem:</strong> The method works on synthetic benchmarks and one real dataset. I don't know how it generalizes across different model types, feature correlations, or when the "true" importance structure is highly non-linear.</li>
+          </ul>
+        </blockquote>
+      </div>
+      <div class="example-slide">
+        <div class="slide-label">Slide 4 — The Ask</div>
+        <ol>
+          <li>How do you handle the <strong>trust problem</strong> with XAI in practice? Do your engineers actually use SHAP plots, or do they ignore them?</li>
+          <li>Has anyone compared SHAP-based feature selection to classical sensitivity analysis (Sobol indices, Morris screening) on the same engineering dataset? When does one outperform the other?</li>
+          <li><strong>Industry perspective:</strong> What level of "explainability" do you actually need to get a surrogate model approved for use in a design process? Is SHAP enough, or do you need causal arguments?</li>
+          <li>Does anyone have experience with the <strong>EU AI Act (Article 86)</strong> requirements for explainability in engineering decision-making — and how that changes what we need from XAI tools?</li>
+        </ol>
+      </div>
     </div>
 
-    <div class="example-slide">
-      <div class="slide-label">Slide 3 — What I've Tried</div>
-      <blockquote>
-        <ul style="padding-left:1.25rem;margin:.5rem 0;">
-          <li>Used the medium grid (1&times;10<sup>6</sup> nodes) as a compromise — but I don't know if the ~4% error is systematic or design-dependent.</li>
-          <li>Compared against published experimental data (Strazisar et al.) — matches at design point but diverges near stall.</li>
-          <li>Checked statistical indicators (Spearman correlations, CoI) — plausible but with 50 samples and non-linear interactions, I can't be sure the rankings are stable.</li>
-          <li>Considered running a subset on the fine grid for spot-checking — but there's no established method for deciding which designs to validate or how many are enough.</li>
-        </ul>
-      </blockquote>
+    <!-- Example 3: Clara Henkel -->
+    <div class="example-block">
+      <h3 class="example-title">"Balancing Breaks My Best Blades"</h3>
+      <p class="example-meta">Clara Henkel, BTU Cottbus-Senftenberg &middot; <a href="https://gpps.global/wp-content/uploads/2025/09/GPPS-TC-2025_paper_017.pdf" target="_blank" rel="noopener">Henkel et al., GPPS Shanghai 2025</a></p>
+
+      <div class="example-slide">
+        <div class="slide-label">Slide 1 — The Context</div>
+        <blockquote>
+          I'm working on fan-blisk design optimization where two disciplines collide: aerodynamics wants the most efficient blade shape, and structural mechanics needs to balance the blisk by shifting blade sections axially and circumferentially to avoid stress hotspots. Traditionally these are solved sequentially — optimize aero first, then balance for stress — but the shifts from balancing <em>change</em> the aerodynamics.
+          <br><br>
+          The blade is parameterized across 21 radial sections with 8 parameters each (168 total, reduced to 16 design variables). CFD runs on Rolls-Royce's in-house HYDRA solver (~45 min per design on 40 cores), FE stress analysis via sc03 (~15 min). We need surrogates to make global optimization feasible.
+        </blockquote>
+      </div>
+      <div class="example-slide">
+        <div class="slide-label">Slide 2 — The Core Roadblock</div>
+        <blockquote>
+          <strong>No single surrogate model works for both objectives — and the stress constraint is the real headache.</strong>
+          <br><br>
+          For efficiency, Bayesian ridge regression dominates (R&sup2; = 0.98). But for maximum stress, it's the worst performer (R&sup2; = 0.58). SVR wins for stress (R&sup2; = 0.88) but is mediocre for efficiency. I'm forced to mix different model types in the same optimization loop.
+        </blockquote>
+        <table>
+          <thead>
+            <tr><th>Target</th><th>Best model</th><th>R&sup2;</th><th>Worst model</th><th>R&sup2;</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Efficiency &eta;</td><td>Bayesian ridge</td><td>0.981</td><td>kNN</td><td>0.626</td></tr>
+            <tr><td>Stress &sigma;<sub>max</sub></td><td>SVR</td><td>0.879</td><td>Bayesian ridge</td><td>0.576</td></tr>
+          </tbody>
+        </table>
+        <blockquote>
+          Worse: the stress constraint can also be framed as a classification problem (feasible vs. infeasible), and classification surrogates give different answers than regression surrogates about which designs are safe. With only 300 CFD samples and a 16-dimensional design space, I can't tell which formulation to trust.
+        </blockquote>
+      </div>
+      <div class="example-slide">
+        <div class="slide-label">Slide 3 — What I've Tried</div>
+        <blockquote>
+          <ul style="padding-left:1.25rem;margin:.5rem 0;">
+            <li><strong>Tested 5 surrogate types</strong> (RF, kNN, SVR, MLP, Bayesian ridge) with full-factorial hyperparameter search — no single model is universally best, confirming the no-free-lunch theorem in practice.</li>
+            <li><strong>Regression vs. classification for stress:</strong> Classification (RF, ROC AUC = 0.94) identifies feasible/infeasible regions well, but loses the magnitude information. Regression preserves magnitude but is less accurate near the critical stress threshold.</li>
+            <li><strong>Reduced 2D problem</strong> (balancing shifts only) for validation — surrogates work beautifully here (R&sup2; &gt; 0.96). But scaling to the full 16D problem degrades accuracy significantly.</li>
+            <li><strong>Surrogate-based optimization</strong> with genetic algorithm — finds better designs than the baseline, but I can't guarantee the stress predictions are reliable enough for the optimizer not to propose structurally dangerous blades.</li>
+          </ul>
+        </blockquote>
+      </div>
+      <div class="example-slide">
+        <div class="slide-label">Slide 4 — The Ask</div>
+        <ol>
+          <li>How do you handle <strong>mixed-surrogate optimization</strong> where different objectives need fundamentally different model types? Is there a clean framework for this?</li>
+          <li><strong>Regression vs. classification for constraints:</strong> Has anyone found a principled way to decide which formulation to use — or a way to combine both?</li>
+          <li><strong>Industry perspective:</strong> When surrogate-based optimization proposes a design near the stress limit, what's your validation protocol before you trust it? Do you always re-run the full FE analysis?</li>
+          <li>With 300 samples in 16 dimensions, are we fundamentally data-starved? Has anyone used <strong>transfer learning or multi-fidelity surrogates</strong> to bootstrap from cheaper simulations?</li>
+        </ol>
+      </div>
     </div>
 
-    <div class="example-slide">
-      <div class="slide-label">Slide 4 — The Ask</div>
-      <ol>
-        <li>How do you handle simulation fidelity vs. budget trade-offs in your DoE work? Is there a principled way to quantify the "ranking error" introduced by a coarser grid?</li>
-        <li>Has anyone used adaptive sampling or surrogate models (Gaussian processes, etc.) to reduce the number of full-fidelity runs needed?</li>
-        <li><strong>Industry perspective:</strong> When you run large parameter studies, what's your threshold for "good enough" data quality?</li>
-        <li>Does anyone have experience with multi-fidelity approaches — using coarse-grid results as a cheap predictor and fine-grid runs only where it matters?</li>
-      </ol>
-    </div>
   </div>
 </section>
 
