@@ -128,17 +128,12 @@
         </div>
 
         <div class="field">
-          <label>Which days will you attend?</label>
-          <div class="checkbox-group">
-            <label class="checkbox-option">
-              <input type="checkbox" name="attend_day1" value="yes">
-              <span>Day 1 — May 6 (Wed)</span>
-            </label>
-            <label class="checkbox-option">
-              <input type="checkbox" name="attend_day2" value="yes">
-              <span>Day 2 — May 7 (Thu)</span>
-            </label>
-          </div>
+          <label for="attendance">Attendance</label>
+          <select id="attendance" name="attendance">
+            <option value="both" selected>Both days — May 6 &amp; 7</option>
+            <option value="day1_only">Day 1 only — May 6 (Wed)</option>
+            <option value="day2_only">Day 2 only — May 7 (Thu)</option>
+          </select>
         </div>
 
         <div class="field" id="presenting-field">
@@ -149,24 +144,6 @@
             <option value="maybe">Maybe — still deciding</option>
             <option value="no">No — I'm joining as audience / brain-trust</option>
           </select>
-        </div>
-
-        <div class="field" id="present-day-field" style="display:none;">
-          <label>Preferred day to present</label>
-          <div class="checkbox-group">
-            <label class="checkbox-option">
-              <input type="radio" name="present_day" value="day1">
-              <span>Day 1 — May 6</span>
-            </label>
-            <label class="checkbox-option">
-              <input type="radio" name="present_day" value="day2">
-              <span>Day 2 — May 7</span>
-            </label>
-            <label class="checkbox-option">
-              <input type="radio" name="present_day" value="either">
-              <span>Either day is fine</span>
-            </label>
-          </div>
         </div>
 
         <div class="field">
@@ -264,13 +241,6 @@
     document.getElementById('count-total').textContent = regs.length;
   }
   updateCounter();
-
-  // Show/hide preferred presentation day
-  const presentingSelect = document.getElementById('presenting');
-  const presentDayField = document.getElementById('present-day-field');
-  presentingSelect.addEventListener('change', function() {
-    presentDayField.style.display = (this.value === 'yes') ? 'block' : 'none';
-  });
 
   const ALLOWED_DOMAINS = [
     'th-brandenburg.de',
