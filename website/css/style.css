@@ -346,15 +346,83 @@ nav .nav-links a:hover { color: var(--text); }
   margin-bottom: 0;
 }
 
+/* --- Example Carousel --- */
+.carousel-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.carousel-btn {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--text-2);
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: all .15s;
+}
+
+.carousel-btn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.carousel-dots {
+  display: flex;
+  gap: .5rem;
+}
+
+.carousel-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: 1px solid var(--border-light);
+  background: transparent;
+  cursor: pointer;
+  padding: 0;
+  transition: all .15s;
+}
+
+.carousel-dot.active {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+.carousel-track {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  gap: 1.5rem;
+  scroll-behavior: smooth;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.carousel-track::-webkit-scrollbar { display: none; }
+
+.carousel-slide {
+  flex: 0 0 100%;
+  scroll-snap-align: start;
+}
+
 /* --- Example Anti-Pitch --- */
 .example-block {
-  margin-top: 2.5rem;
-  padding-top: 2rem;
-  border-top: 1px solid var(--border);
+  margin-top: 0;
+  padding-top: 0;
+  border-top: none;
 }
 
 .example-block:first-of-type {
-  margin-top: 1.5rem;
+  margin-top: 0;
   padding-top: 0;
   border-top: none;
 }
@@ -873,5 +941,9 @@ footer a:hover { color: var(--text); }
     flex-direction: column;
     align-items: stretch;
     text-align: center;
+  }
+
+  .carousel-slide {
+    flex: 0 0 100%;
   }
 }

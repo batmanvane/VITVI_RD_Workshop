@@ -72,7 +72,7 @@
       </div>
       <div class="card">
         <h3>Impulse Talks</h3>
-        <p>Short provocations from academia, industry, and startups to keep the energy high and the perspectives diverse.</p>
+        <p>Short, provocative and radical input from academia, industry, and startups to keep the energy high and the perspectives diverse.</p>
       </div>
       <div class="card">
         <h3>Open Troubleshooting</h3>
@@ -136,8 +136,21 @@
     <h2>What an Anti-Pitch Looks Like</h2>
     <p>Here are three examples of what we're looking for — honest, specific, technically grounded, and focused on real roadblocks rather than polished results.</p>
 
+    <!-- Carousel controls -->
+    <div class="carousel-nav">
+      <button class="carousel-btn" id="carousel-prev" aria-label="Previous example">&larr;</button>
+      <div class="carousel-dots" id="carousel-dots">
+        <button class="carousel-dot active" data-index="0"></button>
+        <button class="carousel-dot" data-index="1"></button>
+        <button class="carousel-dot" data-index="2"></button>
+      </div>
+      <button class="carousel-btn" id="carousel-next" aria-label="Next example">&rarr;</button>
+    </div>
+
+    <div class="carousel-track" id="carousel-track">
+
     <!-- Example 1: Katja Müller -->
-    <div class="example-block">
+    <div class="example-block carousel-slide">
       <h3 class="example-title">"Can I Trust My Own Simulation Data?"</h3>
       <p class="example-meta">Katja M&uuml;ller, TH Brandenburg &middot; <a href="https://asmedigitalcollection.asme.org/turbomachinery/article-abstract/148/6/061001/1222637/Numerical-Study-of-Ice-Accretion-on-Fan-Blades" target="_blank" rel="noopener">ASME J. Turbomachinery, 2025</a></p>
 
@@ -192,7 +205,7 @@
     </div>
 
     <!-- Example 2: Klaus Markgraf -->
-    <div class="example-block">
+    <div class="example-block carousel-slide">
       <h3 class="example-title">"My AI Explains — but Can I Believe It?"</h3>
       <p class="example-meta">Klaus Markgraf, TH Brandenburg &middot; <a href="https://www.researchsquare.com/article/rs-8590595/v1" target="_blank" rel="noopener">Markgraf et al., 2026 (preprint)</a></p>
 
@@ -238,7 +251,7 @@
     </div>
 
     <!-- Example 3: Clara Henkel -->
-    <div class="example-block">
+    <div class="example-block carousel-slide">
       <h3 class="example-title">"Balancing Breaks My Best Blades"</h3>
       <p class="example-meta">Clara Henkel, BTU Cottbus-Senftenberg &middot; <a href="https://gpps.global/wp-content/uploads/2025/09/GPPS-TC-2025_paper_017.pdf" target="_blank" rel="noopener">Henkel et al., GPPS Shanghai 2025</a></p>
 
@@ -292,8 +305,49 @@
       </div>
     </div>
 
+    </div><!-- /carousel-track -->
+
   </div>
 </section>
+
+<script>
+  // Carousel
+  (function() {
+    const track = document.getElementById('carousel-track');
+    const slides = track.querySelectorAll('.carousel-slide');
+    const dots = document.querySelectorAll('.carousel-dot');
+    const prevBtn = document.getElementById('carousel-prev');
+    const nextBtn = document.getElementById('carousel-next');
+    let current = 0;
+
+    function goTo(index) {
+      if (index < 0) index = slides.length - 1;
+      if (index >= slides.length) index = 0;
+      current = index;
+      slides[current].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
+      dots.forEach((d, i) => d.classList.toggle('active', i === current));
+    }
+
+    prevBtn.addEventListener('click', () => goTo(current - 1));
+    nextBtn.addEventListener('click', () => goTo(current + 1));
+    dots.forEach(dot => dot.addEventListener('click', () => goTo(+dot.dataset.index)));
+
+    // Update dots on scroll
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const idx = [...slides].indexOf(entry.target);
+          if (idx !== -1) {
+            current = idx;
+            dots.forEach((d, i) => d.classList.toggle('active', i === current));
+          }
+        }
+      });
+    }, { root: track, threshold: 0.6 });
+
+    slides.forEach(s => observer.observe(s));
+  })();
+</script>
 
 <!-- Schedule -->
 <section id="schedule">
