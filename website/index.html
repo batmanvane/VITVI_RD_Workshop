@@ -321,32 +321,30 @@
     const nextBtn = document.getElementById('carousel-next');
     let current = 0;
 
+    function updateHeight() {
+      track.style.height = slides[current].scrollHeight + 'px';
+    }
+
     function goTo(index) {
       if (index < 0) index = slides.length - 1;
       if (index >= slides.length) index = 0;
       current = index;
-      slides[current].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
+      slides.forEach((s, i) => {
+        s.style.transform = 'translateX(' + (-current * 100) + '%)';
+        s.style.opacity = i === current ? '1' : '0';
+        s.style.transition = 'transform .4s ease, opacity .4s ease';
+      });
       dots.forEach((d, i) => d.classList.toggle('active', i === current));
+      updateHeight();
     }
 
     prevBtn.addEventListener('click', () => goTo(current - 1));
     nextBtn.addEventListener('click', () => goTo(current + 1));
     dots.forEach(dot => dot.addEventListener('click', () => goTo(+dot.dataset.index)));
 
-    // Update dots on scroll
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const idx = [...slides].indexOf(entry.target);
-          if (idx !== -1) {
-            current = idx;
-            dots.forEach((d, i) => d.classList.toggle('active', i === current));
-          }
-        }
-      });
-    }, { root: track, threshold: 0.6 });
-
-    slides.forEach(s => observer.observe(s));
+    // Init
+    goTo(0);
+    window.addEventListener('resize', updateHeight);
   })();
 </script>
 

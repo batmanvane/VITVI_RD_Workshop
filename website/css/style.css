@@ -399,21 +399,14 @@ nav .nav-links a:hover { color: var(--text); }
 
 .carousel-track {
   display: flex;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  gap: 1.5rem;
-  scroll-behavior: smooth;
-  -ms-overflow-style: none;
-  scrollbar-width: none;
+  overflow: hidden;
+  position: relative;
+  transition: height .3s ease;
 }
-
-.carousel-track::-webkit-scrollbar { display: none; }
 
 .carousel-slide {
   flex: 0 0 100%;
-  scroll-snap-align: start;
   min-width: 0;
-  overflow: hidden;
 }
 
 /* --- Example Anti-Pitch --- */
@@ -945,9 +938,5 @@ footer a:hover { color: var(--text); }
     flex-direction: column;
     align-items: stretch;
     text-align: center;
-  }
-
-  .carousel-slide {
-    flex: 0 0 100%;
   }
 }
