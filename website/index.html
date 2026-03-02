@@ -204,7 +204,9 @@
       <div class="example-slide">
         <div class="slide-label">Slide 1 — The Context</div>
         <blockquote>
-          We use data-driven surrogates to replace expensive CFD in aero-engine development. To understand <em>why</em> the model predicts what it predicts, we use SHAP to rank which geometric features matter most — guiding engineers on what to focus on in the next design iteration.
+          We use data-driven surrogates to replace expensive CFD in aero-engine development — predicting performance across hundreds of blade designs without running every simulation. To understand <em>why</em> the model predicts what it predicts, we use SHAP (Shapley Additive Explanations) to rank which geometric features matter most.
+          <br><br>
+          The vision: use XAI not just to predict, but to guide the engineer's intuition — which parameters to focus on, which to ignore in the next design iteration.
         </blockquote>
       </div>
       <div class="example-slide">
@@ -212,26 +214,26 @@
         <blockquote>
           <strong>SHAP values are unstable when data is scarce — and in engine development, data is always scarce.</strong>
           <br><br>
-          Same dataset, different random seeds: feature x<sub>5</sub> jumps from "most important" to "irrelevant". With 25–50 samples (typical for CFD campaigns), a single SHAP run is a <strong>point estimate with unknown variance</strong> — yet downstream processes treat these rankings as gospel.
+          Same dataset, different random seeds: feature x<sub>5</sub> jumps from "most important" to "irrelevant". With 25–50 samples (typical for our CFD campaigns), a single SHAP run is a <strong>point estimate with unknown variance</strong> — yet downstream processes like DoE construction and design space reduction treat these rankings as gospel.
         </blockquote>
       </div>
       <div class="example-slide">
         <div class="slide-label">Slide 3 — What I've Tried</div>
         <blockquote>
           <ul style="padding-left:1.25rem;margin:.5rem 0;">
-            <li><strong>Bootstrap + SHAP:</strong> Train 50 models on resamples, compute SHAP for each — reveals which features are reliably important vs. noise.</li>
-            <li><strong>BIFI:</strong> New method that automatically finds the threshold between "important" and "negligible" features — no manual cutoff needed.</li>
-            <li><strong>Result:</strong> BIFI improves surrogate quality by up to 90%. But it's only validated on synthetic benchmarks and one real dataset.</li>
+            <li><strong>Bootstrap + SHAP:</strong> Train B=50 surrogate models on bootstrap resamples, compute SHAP for each, aggregate into box plots. This reveals which features are reliably important vs. noise.</li>
+            <li><strong>BIFI (Bootstrap-Informed Feature Importance):</strong> New method that automatically finds the threshold between "important" and "negligible" features using the cumulative SHAP distribution — no manual cutoff needed.</li>
+            <li><strong>Result:</strong> BIFI-based DoEs improve surrogate quality (R&sup2; and MSE) by up to 90%. But it's only validated on synthetic benchmarks and one real dataset.</li>
           </ul>
         </blockquote>
       </div>
       <div class="example-slide">
         <div class="slide-label">Slide 4 — The Ask</div>
         <ol>
-          <li>Do your engineers actually <strong>trust and use</strong> SHAP plots in practice?</li>
-          <li>SHAP vs. classical sensitivity analysis (Sobol, Morris) — when does one outperform the other?</li>
-          <li><strong>Industry:</strong> What "explainability" level do you need to approve a surrogate for design decisions?</li>
-          <li>Any experience with <strong>EU AI Act</strong> requirements for explainability in engineering?</li>
+          <li>Do your engineers actually <strong>trust and use</strong> SHAP plots in practice — or do they ignore them?</li>
+          <li>Has anyone compared SHAP-based feature selection to classical sensitivity analysis (Sobol indices, Morris screening) on the same dataset?</li>
+          <li><strong>Industry:</strong> What level of "explainability" do you need to approve a surrogate for use in a design process?</li>
+          <li>Any experience with <strong>EU AI Act</strong> requirements for explainability in engineering decision-making?</li>
         </ol>
       </div>
     </div>
@@ -244,36 +246,38 @@
       <div class="example-slide">
         <div class="slide-label">Slide 1 — The Context</div>
         <blockquote>
-          Fan-blisk design optimization where two disciplines collide: aerodynamics wants the most efficient blade shape, structural mechanics needs to balance the blisk to avoid stress hotspots. The shifts from balancing <em>change</em> the aerodynamics — so sequential optimization doesn't work.
+          Fan-blisk design optimization where two disciplines collide: aerodynamics wants the most efficient blade shape, structural mechanics needs to balance the blisk by shifting blade sections to avoid stress hotspots. The shifts from balancing <em>change</em> the aerodynamics — so sequential optimization doesn't work.
           <br><br>
-          16 design variables, CFD via HYDRA (~45 min/design), FE stress via sc03 (~15 min). We need surrogates to make global optimization feasible.
+          The blade is parameterized with 16 design variables. CFD runs on Rolls-Royce's HYDRA solver (~45 min/design), FE stress analysis via sc03 (~15 min). We need surrogates to make global optimization feasible.
         </blockquote>
       </div>
       <div class="example-slide">
         <div class="slide-label">Slide 2 — The Core Roadblock</div>
         <blockquote>
-          <strong>No single surrogate works for both objectives.</strong> Bayesian ridge dominates for efficiency (R&sup2; = 0.98) but fails for stress (R&sup2; = 0.58). SVR wins for stress (R&sup2; = 0.88) but is mediocre for efficiency. I'm forced to mix model types in the same optimization loop.
+          <strong>No single surrogate works for both objectives — and the stress constraint is the real headache.</strong>
           <br><br>
-          Worse: stress can be framed as classification (feasible/infeasible) or regression — and they give different answers about which designs are safe. With 300 samples in 16D, I can't tell which to trust.
+          Bayesian ridge dominates for efficiency (R&sup2; = 0.98) but is the worst for stress (R&sup2; = 0.58). SVR wins for stress (R&sup2; = 0.88) but is mediocre for efficiency. I'm forced to mix different model types in the same optimization loop.
+          <br><br>
+          Worse: stress can be framed as classification (feasible/infeasible) or regression — and they give different answers about which designs are safe. With only 300 CFD samples in a 16-dimensional design space, I can't tell which formulation to trust.
         </blockquote>
       </div>
       <div class="example-slide">
         <div class="slide-label">Slide 3 — What I've Tried</div>
         <blockquote>
           <ul style="padding-left:1.25rem;margin:.5rem 0;">
-            <li><strong>Tested 5 surrogate types</strong> with full hyperparameter search — no single model is universally best.</li>
-            <li><strong>Classification vs. regression for stress:</strong> Classification finds safe/unsafe regions well (AUC = 0.94) but loses magnitude. Regression preserves magnitude but is less accurate near the threshold.</li>
-            <li><strong>Reduced 2D validation:</strong> Surrogates work beautifully (R&sup2; &gt; 0.96). But scaling to 16D degrades accuracy significantly.</li>
+            <li><strong>Tested 5 surrogate types</strong> (RF, kNN, SVR, MLP, Bayesian ridge) with full hyperparameter search — no single model is universally best, confirming the no-free-lunch theorem in practice.</li>
+            <li><strong>Classification vs. regression for stress:</strong> Classification finds safe/unsafe regions well (AUC = 0.94) but loses magnitude information. Regression preserves magnitude but is less accurate near the critical stress threshold.</li>
+            <li><strong>Reduced 2D validation:</strong> Surrogates work beautifully here (R&sup2; &gt; 0.96). But scaling to the full 16D problem degrades accuracy significantly.</li>
           </ul>
         </blockquote>
       </div>
       <div class="example-slide">
         <div class="slide-label">Slide 4 — The Ask</div>
         <ol>
-          <li>How do you handle <strong>mixed-surrogate optimization</strong> where objectives need different model types?</li>
-          <li>Regression vs. classification for constraints — a principled way to choose, or combine both?</li>
-          <li><strong>Industry:</strong> When the optimizer proposes a design near the stress limit, what's your validation protocol?</li>
-          <li>300 samples in 16D — are we data-starved? Has anyone used <strong>multi-fidelity surrogates</strong> to help?</li>
+          <li>How do you handle <strong>mixed-surrogate optimization</strong> where different objectives need fundamentally different model types?</li>
+          <li>Regression vs. classification for constraints — has anyone found a principled way to decide, or a way to combine both?</li>
+          <li><strong>Industry:</strong> When surrogate-based optimization proposes a design near the stress limit, what's your validation protocol before you trust it?</li>
+          <li>With 300 samples in 16 dimensions, are we data-starved? Has anyone used <strong>multi-fidelity surrogates</strong> to bootstrap from cheaper simulations?</li>
         </ol>
       </div>
     </div>
