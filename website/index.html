@@ -610,7 +610,7 @@
 
 <script>
   // Reveal highlighted text on scroll
-  document.querySelectorAll('#about strong, #format strong, #example > .container > p strong, #brainfood strong').forEach(function(el) {
+  document.querySelectorAll('#about strong, #format strong, #example > .container > p strong, #brainfood > .container > p strong, #brainfood .brainfood-task > p > strong').forEach(function(el) {
     el.classList.add('reveal');
   });
   var revealObs = new IntersectionObserver(function(entries) {
