@@ -601,6 +601,43 @@ a.track-badge:hover {
   color: var(--text-3);
 }
 
+/* --- Further Reading --- */
+.reading-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.reading-card {
+  display: block;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: .5rem;
+  padding: 1.5rem;
+  text-decoration: none;
+  color: var(--text);
+  transition: border-color .2s, box-shadow .2s;
+}
+
+.reading-card:hover {
+  border-color: var(--accent);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, .08);
+}
+
+.reading-card strong {
+  display: block;
+  font-size: 1.05rem;
+  margin-bottom: .5rem;
+  color: var(--accent);
+}
+
+.reading-card span {
+  font-size: 0.85rem;
+  color: var(--text-2);
+  line-height: 1.5;
+}
+
 /* --- Schedule --- */
 .schedule-day {
   margin-top: 2rem;
