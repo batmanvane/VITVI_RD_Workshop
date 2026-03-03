@@ -608,5 +608,18 @@
   </div>
 </footer>
 
+<script>
+  // Reveal highlighted text on scroll
+  document.querySelectorAll('#about strong, #format strong, #example > .container > p strong, #brainfood strong').forEach(function(el) {
+    el.classList.add('reveal');
+  });
+  var revealObs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      if (e.isIntersecting) e.target.classList.add('visible');
+    });
+  }, { threshold: 0.5 });
+  document.querySelectorAll('strong.reveal').forEach(function(el) { revealObs.observe(el); });
+</script>
+
 </body>
 </html>
