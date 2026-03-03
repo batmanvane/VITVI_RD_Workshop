@@ -510,6 +510,55 @@
   </div>
 </section>
 
+<!-- Brain Food -->
+<section id="brainfood">
+  <div class="container">
+    <span class="label">Your Preparation Packet</span>
+    <h2>Brain Food</h2>
+    <p>No homework — just three provocations to chew on before you arrive. Pick your approach and be ready to defend it.</p>
+
+    <div class="brainfood-task">
+      <h3>1. White Box, Black Box, or Fifty Shades of Gray?</h3>
+      <p>
+        Your team needs a model that predicts fan blade performance across hundreds of design variants. The mechanistic model (RANS solver) is trustworthy but takes 45 min per design. A neural network trained on 80 existing runs is fast but occasionally predicts physically impossible results. Your project lead asks: <strong>"Where should we invest our next 3 months — better physics, more data, or something in between?"</strong>
+      </p>
+      <div class="brainfood-options">
+        <div class="brainfood-option"><strong>A)</strong> Pure mechanistic — invest in a reduced-order model (POD/ROM), faster but still physics-based</div>
+        <div class="brainfood-option"><strong>B)</strong> Pure data-driven — run 200 more CFD cases and train a bigger neural net. Let the data speak.</div>
+        <div class="brainfood-option"><strong>C)</strong> Gray-box — use the physics model as backbone, let ML learn the residual (corrective source term)</div>
+        <div class="brainfood-option"><strong>D)</strong> PINN — embed the governing PDEs directly into the loss function, train on sparse data</div>
+      </div>
+    </div>
+
+    <div class="brainfood-task">
+      <h3>2. Three Scalings, Three Truths</h3>
+      <p>
+        Your design space has features spanning 6 orders of magnitude: pressure in Pa, angles in degrees, thickness in mm. Three team members preprocess differently — min-max, z-score, and physics-based non-dimensionalization (Mach, Reynolds). They run the same model. They get <strong>three different feature importance rankings</strong>.
+      </p>
+      <div class="brainfood-options">
+        <div class="brainfood-option"><strong>A)</strong> Always non-dimensionalize first — let physics decide the scale</div>
+        <div class="brainfood-option"><strong>B)</strong> Use permutation importance — it's model-agnostic and scale-invariant</div>
+        <div class="brainfood-option"><strong>C)</strong> Bootstrap the analysis (BIFI-style) — if the ranking flips with different scaling, it was never robust</div>
+        <div class="brainfood-option"><strong>D)</strong> Drop importance entirely — use SHAP interaction values or causal inference instead</div>
+      </div>
+    </div>
+
+    <div class="brainfood-task">
+      <h3>3. The Latent Space Looks Suspiciously Tidy</h3>
+      <p>
+        You compress 200 blade geometries (168 parameters) through a VAE into 4 latent dimensions. It reveals 3 clean clusters. Your senior engineer nods: "Those are our three design families." But you trained on <em>your</em> existing designs only. <strong>Is the VAE discovering real structure — or just memorizing your design habits?</strong>
+      </p>
+      <div class="brainfood-options">
+        <div class="brainfood-option"><strong>A)</strong> Validate externally — generate samples between clusters and run CFD. Do they behave as predicted?</div>
+        <div class="brainfood-option"><strong>B)</strong> Perturbation test — add noise to the inputs. Do the clusters survive or dissolve?</div>
+        <div class="brainfood-option"><strong>C)</strong> Compare to PCA — if linear decomposition finds the same clusters, you don't need a VAE</div>
+        <div class="brainfood-option"><strong>D)</strong> Adversarial check — feed in geometries from a completely different engine family. Where do they land?</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
 <!-- CTA -->
 <section style="text-align:center;padding:5rem 0;">
   <div class="container">

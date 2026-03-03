@@ -476,6 +476,51 @@ nav .nav-links a:hover { color: var(--text); }
 
 .example-slide ol li { margin-bottom: .35rem; }
 
+/* --- Brain Food --- */
+.brainfood-task {
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+
+.brainfood-task:first-of-type {
+  margin-top: 1.5rem;
+  padding-top: 0;
+  border-top: none;
+}
+
+.brainfood-task h3 {
+  color: var(--text) !important;
+  font-size: 1.1rem;
+  margin-bottom: .75rem;
+}
+
+.brainfood-task > p {
+  font-size: 0.9rem;
+}
+
+.brainfood-options {
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+  margin-top: 1rem;
+}
+
+.brainfood-option {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: .75rem 1rem;
+  font-size: 0.85rem;
+  color: var(--text-2);
+}
+
+.brainfood-option strong {
+  color: var(--accent);
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+}
+
 /* --- Schedule --- */
 .schedule-day {
   margin-top: 2rem;
