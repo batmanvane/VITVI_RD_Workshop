@@ -876,6 +876,28 @@ nav .nav-links a:hover { color: var(--text); }
 
 .legal-section ul li { margin-bottom: .25rem; }
 
+/* --- Funding --- */
+.funding {
+  padding: 2rem 0;
+  border-top: 1px solid var(--border);
+  text-align: center;
+}
+
+.funding .container {
+  max-width: 600px;
+}
+
+.funding-logo {
+  height: 48px;
+  margin: 0 auto 1rem;
+}
+
+.funding p {
+  font-size: 0.75rem;
+  color: var(--text-3);
+  line-height: 1.6;
+}
+
 /* --- Footer --- */
 footer {
   padding: 2rem 0;
