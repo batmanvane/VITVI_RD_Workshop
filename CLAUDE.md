@@ -14,8 +14,8 @@ The event is a 2-day intensive technical workshop bringing together mid-thesis P
 * **Location:** Offsite hotel (1-2 hours drive for attendees).
 * **Impulse Talks:** 4 total (Academia, Startup, Industry, Deep-Dive/Methodology). Spread throughout the 2 days to maintain energy levels. Industry talk is specifically scheduled for Day 2 morning.
 
-## The "Anti-Pitch" PhD Format
-Each student chooses one of two tracks depending on where they are in their research. Both share the same 30-minute time box. Track choice is made at registration.
+## The PhD Pitch Format
+Each student chooses one of two tracks depending on where they are in their research. Both share the same 30-minute time box. Track choice is made at registration. Both tracks share the same spirit: honest, unpolished, technically grounded. Even Breakthrough Pitches are not about flexing results — they're about opening up your finding to the room's scrutiny and cross-pollination.
 
 ### Problem Pitch (Roadblock Track)
 * **Total Time:** 30 minutes per student.
@@ -24,7 +24,8 @@ Each student chooses one of two tracks depending on where they are in their rese
   1. Context (2 mins): Overarching goal.
   2. Core Roadblock (3 mins): 1-2 specific technical problems.
   3. What I've Tried (3 mins): Failed solutions and why.
-  4. The Ask (2 mins): Specific questions for the room's brain-trust.
+  4. The Ask (2 mins): Specific questions for the room's brain-trust — "What am I missing? Has anyone solved something similar? What would you try next?"
+* **Discussion Structure:** ~10 min diagnosis (clarifying questions, reframing the problem) + ~10 min brainstorm (concrete suggestions, alternative approaches, who to talk to).
 
 ### Breakthrough Pitch (Finding Track)
 * **Total Time:** 30 minutes per student.
@@ -60,5 +61,5 @@ Each student chooses one of two tracks depending on where they are in their rese
 ## AI Assistant Instructions
 When assisting with this project:
 1. Maintain a professional but energetic and hands-on tone.
-2. Avoid terms like "Symposium", "Lightning Talks", or "Keynotes". Use "Workshop", "Problem Pitches", and "Impulse Talks".
-3. Always prioritize the "troubleshooting" and collaborative nature of the event in any copy generated.
+2. Avoid terms like "Symposium", "Lightning Talks", "Keynotes", or "Anti-Pitch". Use "Workshop", "Problem Pitches", "Breakthrough Pitches", and "Impulse Talks".
+3. Always prioritize the collaborative, honest, and hands-on nature of the event. Both tracks — roadblocks and breakthroughs — are about opening up your work to the room, not about polished results or showing off.
