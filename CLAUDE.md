@@ -46,7 +46,7 @@ Each student chooses one of two tracks depending on where they are in their rese
 - 12:30: Lunch
 - 14:00: Impulse Talk 2 (Startup)
 - 14:30: PhD Block 2 (3 students)
-- 16:30: Open Troubleshooting
+- 16:30: Open Discussions
 - 18:30+: Dinner
 
 **Day 2:**
