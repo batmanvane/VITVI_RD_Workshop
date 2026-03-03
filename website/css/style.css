@@ -521,6 +521,12 @@ nav .nav-links a:hover { color: var(--text); }
   font-size: 0.8rem;
 }
 
+.brainfood-refs {
+  margin-top: 1rem;
+  font-size: 0.8rem;
+  color: var(--text-3);
+}
+
 /* --- Schedule --- */
 .schedule-day {
   margin-top: 2rem;
