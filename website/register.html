@@ -33,7 +33,7 @@
     <span class="label">Registration</span>
     <h1>Join the Workshop</h1>
     <p class="form-intro">
-      May 6–7, 2026. This is an invite-only workshop for members of our partner institutions. Fill out the form below — we'll confirm your spot via email.
+      May 6–7, 2026. This is an invite-only workshop for members of our partner institutions. Fill out the form below — we'll confirm your spot via email. <strong>Registration deadline: March 20, 2026.</strong>
     </p>
 
     <!--
@@ -188,6 +188,14 @@
     </div>
   </div>
 
+  <!-- Registration closed -->
+  <div id="reg-closed" class="form-success" style="display:none;">
+    <div class="check" style="border-color:var(--text-3);background:rgba(113,113,122,0.1);">&#128274;</div>
+    <h2>Registration is closed</h2>
+    <p>The registration deadline has passed. If you'd like to inquire about late registration, please contact us directly.</p>
+    <a href="index.html" class="btn btn-secondary" style="margin-top:1.5rem;">Back to Workshop Info</a>
+  </div>
+
   <!-- Success -->
   <div id="form-success" class="form-success">
     <div class="check">&#10003;</div>
@@ -211,6 +219,16 @@
 </footer>
 
 <script>
+  // Lock registration after May 6, 2026
+  (function() {
+    var lockDate = new Date('2026-05-06T00:00:00');
+    if (new Date() >= lockDate) {
+      document.getElementById('registration-form-wrapper').style.display = 'none';
+      document.getElementById('reg-closed').style.display = 'block';
+      return;
+    }
+  })();
+
   const ALLOWED_DOMAINS = [
     'th-brandenburg.de',
     'rolls-royce.com',
