@@ -987,6 +987,13 @@ footer p {
 footer a { color: var(--text-3); }
 footer a:hover { color: var(--text); }
 
+.last-updated {
+  font-family: var(--font-mono);
+  font-size: 0.7rem !important;
+  opacity: 0.6;
+  margin-top: .25rem;
+}
+
 /* --- Responsive --- */
 @media (max-width: 640px) {
   h1 { font-size: 1.75rem; }
