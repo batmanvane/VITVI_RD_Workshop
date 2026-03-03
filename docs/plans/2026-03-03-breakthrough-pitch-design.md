@@ -7,7 +7,7 @@ Extend the workshop's PhD presentation format from a single "Problem Pitch" (roa
 - **Problem Pitch** = the unsolved side (existing format, unchanged)
 - **Breakthrough Pitch** = the solved side (new format)
 
-Both live under the "Anti-Pitch" umbrella: honest, unpolished, technically grounded.
+Both tracks share the same spirit: honest, unpolished, technically grounded. Even Breakthrough Pitches are not about flexing — they're about opening your finding to the room's scrutiny and cross-pollination.
 
 ## Breakthrough Pitch Format
 
