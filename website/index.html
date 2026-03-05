@@ -16,7 +16,7 @@
 <!-- Nav -->
 <nav>
   <div class="container">
-    <a href="index.html" class="logo"><span>&gt;</span> vitvi_workshop</a>
+    <a href="index.html" class="logo"><span class="prompt">&gt;</span> <span class="logo-text"></span><span class="cursor"></span></a>
     <button class="menu-toggle" aria-label="Menu" onclick="document.querySelector('.nav-links').classList.toggle('open')">&#9776;</button>
     <ul class="nav-links">
       <li><a href="#about">About</a></li>
@@ -26,7 +26,7 @@
       <li><a href="#partners">Partners</a></li>
       <li><a href="#logistics">Logistics</a></li>
       <li><a href="#brainfood">Brain Food</a></li>
-      <li><a href="register.html" class="btn btn-primary" style="padding:.45rem 1rem;font-size:.8rem;">Register</a></li>
+      <li><a href="register.html" class="btn btn-primary" style="padding:.35rem .75rem;font-size:.7rem;">Register</a></li>
     </ul>
   </div>
 </nav>
@@ -37,9 +37,9 @@
     <span class="label">VITVI R&D Workshop 2026</span>
     <h1>Roadblocks, Methods, and&nbsp;Breakthroughs</h1>
     <p class="subtitle">
-      <span class="hero-line" style="animation-delay:0s">No polished talks.</span>
-      <span class="hero-line" style="animation-delay:.6s">No pretending you have all the answers.</span>
-      <span class="hero-line" style="animation-delay:1.2s">PhDs bring their real roadblocks — and their real breakthroughs — to leverage every brain in the&nbsp;room.</span>
+      <span class="hero-line">No polished talks.</span>
+      <span class="hero-line">No pretending you have all the answers.</span>
+      <span class="hero-line">PhDs bring their real roadblocks — and their real breakthroughs — to leverage every brain in the&nbsp;room.</span>
     </p>
     <div class="hero-meta">
       <div class="meta-item">
@@ -771,6 +771,48 @@
     });
   }, { threshold: 0.5 });
   document.querySelectorAll('strong.reveal').forEach(function(el) { revealObs.observe(el); });
+</script>
+
+<script>
+  // CLI typing animation for logo
+  (function() {
+    var el = document.querySelector('.logo-text');
+    if (!el) return;
+    var cursor = document.querySelector('.logo .cursor');
+    var full = 'ai_engine_design';
+    var short = 'vitvi_workshop';
+    var speed = 55;
+    var deleteSpeed = 30;
+    var pauseAfterFull = 1200;
+    var pauseAfterDelete = 300;
+
+    function type(text, i, cb) {
+      if (i <= text.length) {
+        el.textContent = text.slice(0, i);
+        setTimeout(function() { type(text, i + 1, cb); }, speed);
+      } else if (cb) cb();
+    }
+
+    function erase(cb) {
+      var len = el.textContent.length;
+      if (len > 0) {
+        el.textContent = el.textContent.slice(0, len - 1);
+        setTimeout(function() { erase(cb); }, deleteSpeed);
+      } else if (cb) cb();
+    }
+
+    type(full, 0, function() {
+      setTimeout(function() {
+        erase(function() {
+          setTimeout(function() {
+            type(short, 0, function() {
+              cursor.classList.add('cursor--hidden');
+            });
+          }, pauseAfterDelete);
+        });
+      }, pauseAfterFull);
+    });
+  })();
 </script>
 
 </body>
