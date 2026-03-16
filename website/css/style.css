@@ -695,6 +695,53 @@ a.track-badge:hover {
   margin-bottom: 0;
 }
 
+/* --- Countdown --- */
+.countdown {
+  margin-bottom: 2rem;
+  padding: 1.25rem 1.5rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  text-align: center;
+}
+
+.countdown-label {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-3);
+}
+
+.countdown-timer {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-top: .75rem;
+}
+
+.countdown-unit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.countdown-unit span {
+  font-family: var(--font-mono);
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: var(--accent);
+  line-height: 1;
+}
+
+.countdown-unit small {
+  font-size: 0.7rem;
+  color: var(--text-3);
+  margin-top: .25rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
 /* --- Registration Form --- */
 .form-page {
   padding: 4rem 0;
