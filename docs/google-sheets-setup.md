@@ -7,7 +7,7 @@
 3. In **row 1**, paste these headers (one per cell, A1 through M1):
 
 ```
-timestamp | participant_type | name | email | affiliation | role | topic | attendance | presenting | topics_interest | hotel | dinner_may6 | lunch_may7 | dietary
+timestamp | participant_type | name | email | affiliation | role | topic | attendance | presenting | topics_interest | hotel | dinner_may6 | lunch_may7 | dietary | billing_address
 ```
 
 ## Step 2: Add the Apps Script
@@ -83,7 +83,8 @@ function doPost(e) {
     data.hotel || '',
     data.dinner_may6 || '',
     data.lunch_may7 || '',
-    data.dietary || ''
+    data.dietary || '',
+    data.billing_address || ''
   ]);
 
   return ContentService
