@@ -48,17 +48,12 @@
     <!--
       FORM BACKEND SETUP
       ===================
-      This form uses Formspree (https://formspree.io) for collecting submissions.
-
-      To activate:
-      1. Create a free account at https://formspree.io
-      2. Create a new form and copy your form ID (e.g. "xpzvqkdl")
-      3. Replace YOUR_FORM_ID below with your actual ID
-
-      Free tier: 50 submissions/month — more than enough for this workshop.
-      All submissions will appear in your Formspree dashboard, with email notifications.
+      This form uses a Google Apps Script web app that writes submissions
+      directly to a Google Sheet. The endpoint URL is loaded from config.js
+      (gitignored). Copy config.example.js to config.js and add your URL.
+      See docs/google-sheets-setup.md for full setup instructions.
     -->
-    <form id="reg-form" action="https://formspree.io/f/mlgwynab" method="POST">
+    <form id="reg-form" action="#" method="POST">
 
       <!-- Participant type -->
       <div class="form-section">
@@ -175,9 +170,21 @@
         </div>
       </div>
 
-      <!-- Hidden fields -->
-      <input type="hidden" name="_subject" value="New Workshop Registration">
-      <input type="text" name="_gotcha" style="display:none">
+      <!-- Honeypot — invisible to humans, bots auto-fill it -->
+      <div style="position:absolute;left:-9999px;" aria-hidden="true">
+        <label for="website">Website</label>
+        <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+      </div>
+
+      <!-- Human check -->
+      <div class="form-section">
+        <div class="form-section-title">Human check</div>
+        <div class="field">
+          <label for="captcha" id="captcha-label">Loading...</label>
+          <input type="number" id="captcha" name="captcha" required autocomplete="off">
+          <input type="hidden" id="captcha-answer" name="captcha_answer">
+        </div>
+      </div>
 
       <!-- Submit -->
       <div class="form-footer">
@@ -242,7 +249,11 @@
   </div>
 </footer>
 
+<script src="config.js"></script>
 <script>
+  // Set form endpoint from config
+  document.getElementById('reg-form').setAttribute('action', FORM_ENDPOINT);
+
   // Lock registration after deadline
   (function() {
     var deadline = new Date('2026-03-26T23:59:59');
@@ -293,6 +304,14 @@
     'b-tu.de'
   ];
 
+  // Generate math captcha
+  (function() {
+    var a = Math.floor(Math.random() * 10) + 1;
+    var b = Math.floor(Math.random() * 10) + 1;
+    document.getElementById('captcha-label').textContent = 'What is ' + a + ' + ' + b + '?';
+    document.getElementById('captcha-answer').value = a + b;
+  })();
+
   const form = document.getElementById('reg-form');
   const wrapper = document.getElementById('registration-form-wrapper');
   const success = document.getElementById('form-success');
@@ -300,6 +319,7 @@
   const emailInput = document.getElementById('email');
   const emailHint = document.getElementById('email-hint');
   const submitBtn = document.getElementById('submit-btn');
+  const formLoadTime = Date.now();
 
   function getDomain(email) {
     const parts = email.split('@');
@@ -357,6 +377,28 @@
   form.addEventListener('submit', function(e) {
     e.preventDefault();
 
+    // Honeypot check — if filled, silently discard
+    if (document.getElementById('website').value) {
+      wrapper.style.display = 'none';
+      success.classList.add('visible');
+      return;
+    }
+
+    // Time check — reject if submitted in under 3 seconds
+    if (Date.now() - formLoadTime < 3000) {
+      wrapper.style.display = 'none';
+      success.classList.add('visible');
+      return;
+    }
+
+    // Captcha check
+    var captchaInput = document.getElementById('captcha').value;
+    var captchaAnswer = document.getElementById('captcha-answer').value;
+    if (captchaInput !== captchaAnswer) {
+      alert('Incorrect answer. Please try again.');
+      return;
+    }
+
     // Final whitelist check
     if (!isWhitelisted(emailInput.value)) {
       showInquiry();
@@ -365,18 +407,14 @@
 
     const action = form.getAttribute('action');
 
-    // Submit to Formspree
+    // Submit to Google Apps Script
     fetch(action, {
       method: 'POST',
-      body: new FormData(form),
-      headers: { 'Accept': 'application/json' }
-    }).then(response => {
-      if (response.ok) {
-        wrapper.style.display = 'none';
-        success.classList.add('visible');
-      } else {
-        alert('Something went wrong. Please try again or email us directly.');
-      }
+      body: new URLSearchParams(new FormData(form)),
+      mode: 'no-cors'
+    }).then(() => {
+      wrapper.style.display = 'none';
+      success.classList.add('visible');
     }).catch(() => {
       alert('Network error. Please check your connection and try again.');
     });
