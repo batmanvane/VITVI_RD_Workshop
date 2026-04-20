@@ -12,6 +12,7 @@ Website and registration system for the VITVI R&D Workshop — a two-day, invite
 website/
 ├── index.html          # Landing page (schedule, format, examples)
 ├── register.html       # Registration form with domain whitelist
+├── schedule.html       # Encrypted schedule page (StatiCrypt)
 ├── legal.html          # Legal notice (German TMG)
 ├── privacy.html        # Privacy policy (GDPR)
 ├── config.example.js   # Template for form endpoint config
@@ -63,6 +64,31 @@ See [`docs/google-sheets-setup.md`](docs/google-sheets-setup.md) for full setup 
 - `@b-tu.de`
 
 Others see an inquiry button that opens a pre-filled email to the organizer.
+
+## Protected Schedule Page
+
+The detailed schedule (with presenter names) is password-protected using
+[StatiCrypt](https://github.com/robinmoisson/staticrypt). The encryption
+happens client-side — the HTML file contains AES-encrypted content that
+decrypts in the browser when the correct password is entered.
+
+**Source file:** `local_dont_commit_to_branch/organization/schedule-source.html` (gitignored)
+
+**To update the schedule:**
+
+1. Edit the source HTML file
+2. Encrypt and output to the website directory:
+   ```bash
+   npx staticrypt \
+     local_dont_commit_to_branch/organization/schedule-source.html \
+     -p "<password>" \
+     -o website/schedule.html \
+     --title "VITVI Workshop Schedule" \
+     --remember 30
+   ```
+3. Commit and push `website/schedule.html`
+
+The `--remember 30` flag stores the password in the visitor's browser for 30 days.
 
 ## Forking this for your own workshop
 
